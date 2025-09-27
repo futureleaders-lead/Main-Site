@@ -2,8 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Future Leaders Competition</title>
+    <title>LEAD College Passing Out Ceremony 2023</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,16 +12,179 @@
     <style>
       body {
         font-family: 'Poppins', sans-serif;
+        background-color: #0B1A55;
+        color: #FFFFFF;
       }
-      @keyframes pulse-bright {
-        0%, 100% {
-          box-shadow: 0 0 10px rgba(245, 130, 32, 0.4), 0 0 20px rgba(245, 130, 32, 0.3);
-          transform: scale(1);
-        }
-        50% {
-          box-shadow: 0 0 25px rgba(245, 130, 32, 0.8), 0 0 40px rgba(245, 130, 32, 0.6);
-          transform: scale(1.05);
-        }
+      .font-helvetica {
+        font-family: 'Helvetica', Arial, sans-serif;
+      }
+      .golden-text {
+        background: linear-gradient(145deg, #FFD700, #FFB800);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+        filter: drop-shadow(3px 3px 5px rgba(255, 106, 0, 0.7));
+      }
+      .animations-paused * {
+        animation-play-state: paused !important;
+      }
+
+      /* Base Animations */
+      @keyframes fall {
+        0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+      }
+      @keyframes slow-pan {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+        100% { transform: translateY(0px); }
+      }
+      @keyframes pulse-glow {
+        0%, 100% { filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.4)); }
+        50% { filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.8)); }
+      }
+      @keyframes flag-wave {
+        0% { background-position: 0% 50%; }
+        100% { background-position: 200% 50%; }
+      }
+      @keyframes orb-float {
+        0% { transform: translate(0, 0); opacity: 0.2; }
+        25% { transform: translate(20px, 40px); opacity: 0.5; }
+        50% { transform: translate(0, 80px); opacity: 0.3; }
+        75% { transform: translate(-20px, 40px); opacity: 0.5; }
+        100% { transform: translate(0, 0); opacity: 0.2; }
+      }
+      
+      /* Marquee Animation */
+      @keyframes marquee {
+        from { transform: translateX(0); }
+        to { transform: translateX(-100%); }
+      }
+
+      .marquee {
+        flex-shrink: 0;
+        min-width: 100%;
+        animation: marquee 40s linear infinite;
+        white-space: nowrap;
+        text-align: center;
+      }
+
+      .marquee-text {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #0B1A55;
+        letter-spacing: 0.05em;
+      }
+
+      /* New Header/Footer Styles */
+      .golden-header, .golden-footer {
+          background: linear-gradient(90deg, #FFB800, #FFD700, #FFB800);
+          box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.5);
+          position: absolute;
+          left: 0;
+          right: 0;
+          z-index: 20;
+      }
+      .golden-header { top: 0; height: 1rem; }
+      .golden-footer { 
+          bottom: 0; 
+          height: 2.5rem;
+          display: flex;
+          align-items: center;
+          overflow: hidden;
+      }
+
+      /* New Animation System */
+      .animate-in {
+          animation-duration: 1.2s;
+          animation-fill-mode: both;
+          animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+
+      /* Header Animations */
+      .animate-fade-scale-up { animation-name: fade-scale-up; }
+      @keyframes fade-scale-up {
+          from { opacity: 0; transform: scale(0.8); }
+          to { opacity: 1; transform: scale(1); }
+      }
+      .animate-slide-from-bottom { animation-name: slide-from-bottom; }
+      @keyframes slide-from-bottom {
+          from { opacity: 0; transform: translateY(100%); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-mask-reveal { animation-name: mask-reveal; }
+      @keyframes mask-reveal {
+          from { clip-path: inset(0 100% 0 0); }
+          to { clip-path: inset(0 0 0 0); }
+      }
+      .letter-stagger > span {
+          display: inline-block;
+          opacity: 0;
+          transform: translateY(20px);
+          animation: letter-stagger-anim 0.5s forwards;
+      }
+      @keyframes letter-stagger-anim {
+          to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* Text Animations */
+      .animate-smooth-fade-in { animation-name: smooth-fade-in; }
+      @keyframes smooth-fade-in {
+          from { opacity: 0; }
+          to { opacity: 1; }
+      }
+      .animate-blur-to-sharp { animation-name: blur-to-sharp; }
+      @keyframes blur-to-sharp {
+          from { opacity: 0; filter: blur(10px); }
+          to { opacity: 1; filter: blur(0px); }
+      }
+      .animate-minimal-slide-in { animation-name: minimal-slide-in; }
+      @keyframes minimal-slide-in {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* Photo Animations */
+      .animate-float-rise { animation-name: float-rise; }
+      @keyframes float-rise {
+          from { opacity: 0; transform: translateY(100px) scale(0.9); }
+          to { opacity: 1; transform: translateY(0) scale(1); }
+      }
+      .animate-zoom-out-entrance { animation-name: zoom-out-entrance; }
+      @keyframes zoom-out-entrance {
+          from { opacity: 0; transform: scale(1.5); }
+          to { opacity: 1; transform: scale(1); }
+      }
+      .animate-drop-in-shadow { animation-name: drop-in-shadow; }
+      @keyframes drop-in-shadow {
+          from { opacity: 0; transform: translateY(-50px); filter: drop-shadow(0 0 0 rgba(0,0,0,0)); }
+          to { opacity: 1; transform: translateY(0); filter: drop-shadow(0 25px 25px rgba(0,0,0,0.2)); }
+      }
+      .animate-masked-reveal-photo { animation-name: masked-reveal-photo; }
+      @keyframes masked-reveal-photo {
+          from { clip-path: circle(0% at 50% 100%); }
+          to { clip-path: circle(150% at 50% 100%); }
+      }
+      .animate-3d-flip-in {
+          transform-origin: bottom center;
+          animation-name: flip-in;
+          backface-visibility: visible !important;
+      }
+      @keyframes flip-in {
+          from {
+              transform: perspective(800px) rotateX(90deg);
+              opacity: 0;
+          }
+          to {
+              transform: perspective(800px) rotateX(0deg);
+              opacity: 1;
+          }
       }
     </style>
 
@@ -28,16 +192,15 @@
   <script type="importmap">
 {
   "imports": {
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
-    "react/": "https://aistudiocdn.com/react@^19.1.1/",
     "react": "https://aistudiocdn.com/react@^19.1.1",
-    "framer-motion": "https://aistudiocdn.com/framer-motion@^11.3.1"
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "react/": "https://aistudiocdn.com/react@^19.1.1/"
   }
 }
 </script>
-  <script type="module" crossorigin src="/Main-Site/assets/index-CIkR-5VZ.js"></script>
+  <script type="module" crossorigin src="/assets/index-QfS7fiLo.js"></script>
 </head>
-  <body class="bg-white text-gray-800">
+  <body>
     <div id="root"></div>
-</body>
+  </body>
 </html>
