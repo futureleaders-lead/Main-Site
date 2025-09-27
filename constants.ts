@@ -1,0 +1,85 @@
+import type { AgendaItem } from './types';
+
+export const AGENDA_ITEMS: AgendaItem[] = [
+  {
+    id: 1,
+    time: '08.30 – 09.30 AM',
+    title: 'Welcome & Registration',
+    type: 'title',
+  },
+  {
+    id: 2,
+    time: '09.31 – 10.00 AM',
+    title: 'Academic Procession',
+    type: 'event',
+  },
+  {
+    id: 3,
+    time: '10.01 – 10.05 AM',
+    title: 'Prayer',
+    type: 'event',
+  },
+  {
+    id: 4,
+    time: '10.06 – 10.10 AM',
+    title: 'Lighting of the Lamp',
+    type: 'event',
+  },
+  {
+    id: 5,
+    time: '10.11 – 10.20 AM',
+    title: 'Welcome Address',
+    speaker: 'Mr. Pratheesh V',
+    photoUrl: 'https://files.catbox.moe/44qrj2.png',
+    type: 'speaker',
+  },
+  {
+    id: 6,
+    time: '10.21 – 10.30 AM',
+    title: 'Presidential Address',
+    speaker: 'Dr. Thomas K George',
+    photoUrl: 'https://files.catbox.moe/f8uq45.png',
+    type: 'speaker',
+  },
+  {
+    id: 7,
+    time: '10.31 – 10.41 AM',
+    title: 'Chief Guest Address',
+    speaker: 'Dr. D Viswanathan',
+    photoUrl: 'https://files.catbox.moe/nnwyqx.png',
+    type: 'speaker',
+  },
+  {
+    id: 8,
+    time: '10.41 – 12.41 PM',
+    title: 'Presentation of Graduates',
+    type: 'event',
+  },
+  {
+    id: 9,
+    time: '12.42 – 12.46 PM',
+    title: 'Administration of the Pledge',
+    speaker: 'Director',
+    type: 'event',
+  },
+  {
+    id: 10,
+    time: '12.47 – 12.52 PM',
+    title: 'Vote of Thanks',
+    speaker: 'Dr. Sangeetha',
+    photoUrl: 'https://files.catbox.moe/g3cjn8.png',
+    type: 'speaker',
+  },
+  {
+    id: 11,
+    time: '12.53 – 12.55 PM',
+    title: 'National Anthem',
+    type: 'event',
+  },
+  {
+    id: 13,
+    time: '01.07 – 02.00 PM',
+    title: 'Lunch Break',
+    type: 'break',
+  },
+];
