@@ -9,10 +9,14 @@ const assetsToPreload = [
   ...AGENDA_ITEMS.filter(item => item.photoUrl).map(item => item.photoUrl!)
 ];
 
-const LoadingScreen: React.FC = () => (
+const LoadingScreen: React.FC<{ error: string | null }> = ({ error }) => (
   <div className="h-screen w-screen flex flex-col items-center justify-center bg-[#0B1A55] text-white">
     <img src="https://files.catbox.moe/bvw8pn.png" alt="LEAD College Logo" className="w-48 h-48 object-contain mb-8 animate-pulse" />
-    <p className="text-xl tracking-wider animate-pulse">Loading Ceremony...</p>
+    {error ? (
+      <p className="text-xl text-red-500">{error}</p>
+    ) : (
+      <p className="text-xl tracking-wider animate-pulse">Loading Ceremony...</p>
+    )}
   </div>
 );
 
@@ -22,6 +26,7 @@ const App: React.FC = () => {
   const [isPaused, setIsPaused] = useState(false);
   const [showControllerHint, setShowControllerHint] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
+  const [loadingError, setLoadingError] = useState<string | null>(null);
 
   useEffect(() => {
     const preloadAssets = async () => {
@@ -31,12 +36,18 @@ const App: React.FC = () => {
             const img = new Image();
             img.src = src;
             img.onload = resolve;
-            img.onerror = reject;
+            img.onerror = () => reject(new Error(`Failed to load image: ${src}`));
           });
         });
-        await Promise.all(promises);
+
+        await Promise.race([
+          Promise.all(promises),
+          new Promise((_, reject) => setTimeout(() => reject(new Error("Asset loading timed out")), 30000))
+        ]);
+
       } catch (error) {
         console.error("Failed to preload assets:", error);
+        setLoadingError((error as Error).message);
       }
       setIsLoading(false);
     };
@@ -81,8 +92,8 @@ const App: React.FC = () => {
     };
   }, [handleNextSlide, handlePrevSlide]);
 
-  if (isLoading) {
-    return <LoadingScreen />;
+  if (isLoading || loadingError) {
+    return <LoadingScreen error={loadingError} />;
   }
 
   return (
